@@ -26,3 +26,4 @@ node {
             app.push("${env.BUILD_NUMBER}")
         }
     }
+}
