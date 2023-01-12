@@ -26,11 +26,8 @@ node {
             app.push("${env.BUILD_NUMBER}")
         }
     }
-    stage('deploy to kubernetes'){
-        steps{
-            script{
-                kubernetesDeploy (configs: 'deployment.yaml', kubeconfigId: 'k8sconfig')
-            }
+    stage('Trigger ManifestUpdate') {
+                echo "triggering updatemanifestjob"
+                build job: 'updatemanifest', parameters: [string(name: 'DOCKERTAG', value: env.BUILD_NUMBER)]
         }
-    }
 }
