@@ -26,4 +26,11 @@ node {
             app.push("${env.BUILD_NUMBER}")
         }
     }
+    stage('deploy to kubernetes'){
+        steps{
+            script{
+                kubernetesDeploy (configs: 'deployment.yaml', kubeconfigId: 'k8sconfig')
+            }
+        }
+    }
 }
